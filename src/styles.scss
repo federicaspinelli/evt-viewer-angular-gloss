@@ -1,0 +1,416 @@
+/* Global styles. Place where eventually import other style files. */
+@import "./assets/scss/variables";
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "./assets/scss/themes";
+@import "./assets/scss/mixins";
+@import "./assets/scss/bootstrapOverrides";
+
+@font-face {
+    font-family: "Junicode";
+    src: url("./assets/fonts/Junicode.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Junicode";
+    src: url("./assets/fonts/Junicode-Bold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Junicode";
+    src: url("./assets/fonts/Junicode-Italic.woff") format("woff");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Junicode";
+    src: url("./assets/fonts/Junicode-BoldItalic.woff") format("woff");
+    font-weight: bold;
+    font-style: italic;
+}
+
+html,
+body {
+    height: 97%;
+}
+
+// body {
+//      overflow: visible !important;
+// }
+
+.edition-font {
+    font-family: Junicode, Times, serif;
+}
+
+.ui-font {
+    font-family: Arial, sans-serif; // TODO: decide which font to use for the UI
+}
+
+// ng-select overwrites
+.ng-select {
+    position: relative;
+    display: inline-flex !important;
+    vertical-align: middle;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+    padding-left: 5px;
+    padding-right: 5px;
+
+    .ng-select-container .ng-value-container .ng-placeholder {
+        top: 0 !important;
+        position: relative !important;
+    }
+
+    &.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
+        border: none;
+    }
+
+    .ng-select-container {
+        height: 31px !important;
+        min-height: 31px;
+        vertical-align: middle;
+        border: none;
+        padding-left: 5px;
+
+        @include themify($themes) {
+            background-color: themed("toolsBackground") !important;
+            color: themed("toolsColor");
+        }
+    }            
+
+    html body evt-root evt-main-header nav.navbar.justify-content-between.temp-header {
+        @include themify($themes) {
+            background-color: themed("mainHeaderBackground") !important;
+            color: themed("mainHeaderColor");
+        }
+    }
+
+    .ng-arrow-wrapper {
+        padding-left: 6px;
+        user-select: none;
+        height: 100%;
+        width: 24px;
+        opacity: 0.5;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        @include themify($themes) {
+            background-color: themed("toolsBackgroundDarker") !important;
+        }
+
+        .ng-arrow {
+            border-width: 5px 5px 0;
+            vertical-align: text-bottom;
+
+            @include themify($themes) {
+                border-color: themed("baseColorDark") transparent transparent;
+            }
+        }
+    }
+
+    &.ng-select-opened > .ng-select-container {
+        .ng-arrow-wrapper {
+            opacity: 1;
+
+            .ng-arrow {
+                @include themify($themes) {
+                    border-color: transparent transparent themed("baseColorDark");
+                }
+            }
+        }
+    }
+
+    .ng-dropdown-panel {
+        @include themify($themes) {
+            background-color: themed("toolsBackground") !important;
+            color: themed("toolsColor");
+        }
+    }
+    .ng-dropdown-panel-items {
+        @include set("box-shadow", "0 0.125rem 0.25rem rgba(0, 0, 0, 0.1)");
+
+        .ng-option {
+            @include themify($themes) {
+                background-color: themed("toolsBackground") !important;
+                color: themed("toolsColor");
+            }
+            &.ng-option-marked {
+                @include themify($themes) {
+                    background-color: rgba(themed("baseColorDark"), 0.1) !important;
+                }
+            }
+            &.ng-option-selected {
+                @include themify($themes) {
+                    background-color: themed("baseColorDark") !important;
+                    color: themed("baseColorLight") !important;
+                }
+            }
+        }
+    }
+
+    &.ng-select-opened {
+        .ng-arrow-wrapper .ng-arrow {
+            border-width: 0 4px 4px;
+        }
+    }
+}
+
+.overflow-y-auto {
+    overflow-y: auto;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+// .abbr,
+// .expan {
+//     color: purple;
+//     text-decoration: underline;
+// }
+.expan evt-text {
+    &:before {
+        content: "(";
+    }
+    &:after {
+        content: ")";
+    }
+}
+
+.corr[type='expunction']{
+    &:before {
+        content: "<";
+    }
+    &:after {
+        content: ">";
+    }
+}
+
+.hi[rend='italic'] {
+    font-style: italic;
+}
+
+.ex {
+    font-style: italic;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn-close {
+    height: 20px !important;
+    width: 20px !important;
+    line-height: 0.8rem;
+    padding: 0;
+    font-size: 0.9rem;
+}
+
+.more-info-label {
+    display: none !important;
+}
+
+// add by FS to manage in scss specific files
+
+ul.lem-details.nav li.nav-item a.ui-font.nav-link {
+    color: #000 !important;
+}
+
+ul.lem-details.nav li.nav-item a.ui-font.nav-link.active {
+    background-color: #f7f7f7;
+}
+
+evt-lemmatized-entity.ng-star-inserted div.ne-detail-content.ng-star-inserted {
+    background-color: #f7f7f7;
+}
+
+.ne-occurrence {
+    border-radius: 4px;
+    padding: 4px 6px;
+    background: rgba(255, 255, 255, 0.5);
+    margin-right: 3px;
+    font-size: .7rem;
+    margin-bottom: 3px;
+    display: inline-block !important;
+    cursor: pointer;
+    line-height: 0.9rem;
+
+    .ne-occurrence-count {
+      top: -1px;
+      position: relative;
+      margin-left: 5px;
+      border: 1px solid transparent;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.8) !important;
+
+      .ne-occurrence-count {
+        border: 1px solid #ccc;
+      }
+    }
+
+}
+
+// Provvisorio 
+.lemmatizedEntityRef.highlighted {
+    background-color: antiquewhite;
+}
+
+.iperlemmatizedEntityRef.highlighted {
+    text-decoration: underline antiquewhite ;
+}
+
+.external-link-alt {
+    color: #000;
+}
+
+#abcb9a36175c{
+  display: hidden !important;
+}
+
+.popower-body evt-text {
+    text-transform: uppercase !important;
+}
+
+span.iperlemmatizedEntityRef.w.highlight {
+    font-weight: 700;
+}
+.btn {
+    &.active {
+        @include themify($themes) {
+            background: themed("toolsColorActive") !important;
+        }
+    }
+}
+// evt-main-header {
+//     overflow: visible !important;
+// }
+
+html body evt-root evt-main-header nav.navbar.justify-content-between.temp-header div evt-button.ng-star-inserted button.btn.btn-sm.btn-no-border.viewMode-btn.btn-light.btn-inverted.btn-hovered.shadow-sm.active evt-icon.ng-star-inserted span.evt-icon-imgTxt.viewMode-selector.icon.ng-star-inserted {
+    
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .4) !important;
+    // @include themify($themes) {
+    //     color: themed("toolsColorActive");
+    //     background-color: themed("toolsBackground");
+    // }
+}
+
+// .btn {
+//     outline: none;
+//     border: none;
+
+//     &[disabled]{
+//         cursor: default;
+//     }
+
+//     &.btn-sm {
+//         height: 31px;
+//     }
+
+//     &:focus {
+//         box-shadow: none;
+//     }
+
+//     @include themify($themes) {
+//         color: themed("toolsColor");
+//         background-color: themed("toolsBackground");
+//         border-color: themed("toolsBackground");
+//     }
+
+//     &:hover:not([disabled]) {
+//         @include set("box-shadow", "1px 2px 3px rgba(0, 0, 0, .4) inset !important");
+//     }
+
+//     &.active {
+//         @include themify($themes) {
+//             background: themed("toolsColorActive") !important;
+//         }
+//     }
+
+//     &.transparent {
+//         background: none !important;
+//         border-color: transparent !important;
+
+//         &.active {
+//             @include themify($themes) {
+//                 color: themed("toolsColorActive");
+//             }
+//         }
+//     }
+
+//     &.btn-inverted {
+//         background: transparent;
+//         border: none;
+//         box-shadow: none;
+
+//         @include themify($themes) {
+//             color: themed("toolsBackground");
+//             background-color: themed("toolsColor");
+//             border-color: themed("toolsColor");
+
+//             &:hover,
+//             &.btn-hovered {
+//                 background: rgba(themed("toolsBackground"), 0.2);
+//             }
+//         }
+//     }
+
+//     &.btn-floating {
+//         @include set("box-shadow", "0 2px 4px rgba(0, 0, 0, .4) !important");
+//         @include themify($themes) {
+//             color: themed("toolsBackground");
+//             background-color: themed("toolsColor");
+//             border-color: themed("toolsColor");
+//         }
+//         &:hover {
+//             @include set("box-shadow", "none !important");
+//         }
+//         &.rounded-circle {
+//             height: 40px;
+//             width: 40px;
+//         }
+//     }
+// }
+
+/*footer.footerz {
+    position: absolute !important;
+    width: 100%;
+    height: 3em;
+    background-color: #0a4553;
+    color: white;
+    // padding-top: 2px;
+    a {
+      color: white;
+    }
+    .partner-list {
+      background-color: rgba(250,250,250,.5);
+      border-radius: 6px;
+      padding: 1px 2px;
+    }
+    .img-logo{
+        height: 2em;
+        padding: 1px;
+    }
+    .container {
+        padding: 4px;
+    }
+    
+}
+
+html body footer#footerz.footerz div.container div.row div.col-lg-9.h-100.text-center.my-auto{
+    padding-left: 400px !important;
+}*/
+
+// evt-root {
+//     position: relative !important;
+//     min-height: 100vh;
+// }

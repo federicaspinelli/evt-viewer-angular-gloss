@@ -1,0 +1,14 @@
+{
+	"editionUrls": ["assets/data/main.xml"],
+	"editionImagesSource": {
+		"manifest": { 
+			"value": "",
+			"enabled": false
+		},
+		"graphics": {
+			"value": "url",
+			"enabled": false
+		}
+	},
+	"imagesFolderUrl": "assets/data/images-all"
+}

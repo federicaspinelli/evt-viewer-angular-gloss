@@ -1,0 +1,23 @@
+<evt-panel [showSecondaryContent]="msDescOpen"
+    [hideHeader]="false"
+    [hideFooter]="true">
+    <div header-left>
+        <!-- TODO: Add dropdowns for navigation -->
+        <evt-ms-desc-selector #msDesc (selectionChange)="setMsDescID($event)" (msDescOpen)="setMsDescOpen($event)"></evt-ms-desc-selector>
+    </div>
+    <div content>
+        <evt-osd
+            *ngIf="viewerData"
+            [viewerData]="viewerData"
+            [page]="pageNumber"
+            (pageChange)="updatePage($event)">
+        </evt-osd>
+        <p *ngIf="!viewerData">Found no source file</p>
+    </div>
+
+    <div secondary-content>
+        <div *ngIf="msDescOpen">
+            <evt-ms-desc [data]="currentMsDesc$ | async"></evt-ms-desc>    
+        </div>
+    </div>
+</evt-panel>
